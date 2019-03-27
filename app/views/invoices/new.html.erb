@@ -7,5 +7,14 @@
 	Vehicle No: <%= f.text_field :vehicle_no %><br>
 	Supply Date & Time: <%= f.datetime_field :supply_date_time %><br>
 	Place of Supply: <%= f.text_field :supply_place %><br>
+	<div>
+	<%= f.fields_for :goods_details do |builder| %>
+		<%= render 'goods_detail_fields', f: builder %>
+	<% end %>
+	<div class="links">
+    <%= link_to_add_association 'add more', f, :goods_details %>
+	</div>
+	</div>
+	<%#= link_to_add_row('Add More', f, :goods_details, class: 'btn btn-primary') %>
 	<%= f.submit %>
  <% end %>
