@@ -1,0 +1,11 @@
+<h1>New Invoice</h1>
+<%= form_for @invoice, url: invoices_path, method: :post do |f| %>
+	Name of Buyer: <%= f.text_field :buyer_name %><br>
+	Address of Buyer: <%= f.text_area :buyer_address %><br>
+	GSTIN No.: <%= f.text_field :buyer_gstin_no %><br>
+	Transportation Mode: <%= f.text_field :transportation_mode %><br>
+	Vehicle No: <%= f.text_field :vehicle_no %><br>
+	Supply Date & Time: <%= f.datetime_field :supply_date_time %><br>
+	Place of Supply: <%= f.text_field :supply_place %><br>
+	<%= f.submit %>
+ <% end %>
