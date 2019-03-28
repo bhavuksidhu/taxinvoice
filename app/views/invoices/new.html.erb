@@ -1,3 +1,9 @@
+<div class="container">
+	<h1>aqib</h1>
+</div>
+
+
+
 <h1>New Invoice</h1>
 <% if @invoice.errors.any? %>
   <div id="validation_errors">
@@ -27,15 +33,15 @@
 	    <%= link_to_add_association 'Add more', f, :goods_details %>
 		</div>
 	</div>
-	Total Taxable Value: <%= f.text_field :total_taxable_value, class: "total_taxable_value", value: ""  %><br>
+	Total Taxable Value: <%= f.text_field :total_taxable_value, :readonly => true, class: "total_taxable_value", value: ""  %><br>
 	CGST (in %): <%= f.text_field :cgst, class: "cgst" %>
-	Total CGST: <%= f.text_field :tot_cgst, class: "tot_cgst" %><br>
+	Total CGST: <%= f.text_field :tot_cgst, :readonly => true, class: "tot_cgst" %><br>
 	SGST (in %): <%= f.text_field :sgst, class: "sgst" %>
-	Total SGST: <%= f.text_field :tot_sgst, class: "tot_sgst" %><br>
+	Total SGST: <%= f.text_field :tot_sgst, :readonly => true, class: "tot_sgst" %><br>
 	IGST (in %): <%= f.text_field :igst, class: "igst" %>
-	Total IGST: <%= f.text_field :tot_igst, class: "tot_igst" %><br>
+	Total IGST: <%= f.text_field :tot_igst, :readonly => true, class: "tot_igst" %><br>
 	Cartage: <%= f.text_field :cartage, class: "cartage" %><br>
-	Invoice Total: <%= f.text_field :invoice_total, class: "invoice_total" %><br>
+	Invoice Total: <%= f.text_field :invoice_total, :readonly => true, class: "invoice_total" %><br>
 	<%= f.submit %>
  <% end %>
 

@@ -1,4 +1,5 @@
 class InvoicesController < ApplicationController
+	before_action :authenticate_user!
 
 	def new
 		@invoice = Invoice.new
@@ -8,7 +9,7 @@ class InvoicesController < ApplicationController
 	def create
 		@invoice = Invoice.new(invoice_params)
 		if @invoice.save
-		  redirect_to home_index_path
+		  redirect_to new_invoice_path
 		else
 		  render :new
 		end
