@@ -21,11 +21,6 @@ ActiveRecord::Schema.define(version: 20190327162038) do
     t.float "quantity", limit: 24
     t.float "rate", limit: 24
     t.float "taxable_value", limit: 24
-    t.float "cartage", limit: 24
-    t.float "cgst", limit: 24
-    t.float "sgst", limit: 24
-    t.float "igst", limit: 24
-    t.float "invoice_total", limit: 24
   end
 
   create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,6 +34,14 @@ ActiveRecord::Schema.define(version: 20190327162038) do
     t.datetime "supply_date_time"
     t.string "supply_place"
     t.float "total_taxable_value", limit: 24
+    t.float "cgst", limit: 24
+    t.float "tot_cgst", limit: 24
+    t.float "sgst", limit: 24
+    t.float "tot_sgst", limit: 24
+    t.float "igst", limit: 24
+    t.float "tot_igst", limit: 24
+    t.float "cartage", limit: 24
+    t.float "invoice_total", limit: 24
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

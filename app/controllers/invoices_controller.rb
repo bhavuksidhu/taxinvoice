@@ -15,6 +15,6 @@ class InvoicesController < ApplicationController
 	end
 
 	def invoice_params
-		params.require(:invoice).permit(:buyer_name, :buyer_address, :buyer_gstin_no, :transportation_mode, :vehicle_no, :supply_date_time, :supply_place, :total_taxable_value, goods_details_attributes: [:id, :destroy, :goods_desc, :hsn_acs_code, :quantity, :rate, :taxable_value])
+		params.require(:invoice).permit(:buyer_name, :buyer_address, :buyer_gstin_no, :transportation_mode, :vehicle_no, :supply_date_time, :supply_place, :total_taxable_value, :total_taxable_value,:cgst, :tot_cgst, :sgst, :tot_sgst, :igst, :tot_igst, :cartage, :invoice_total, goods_details_attributes: [:id, :_destroy, :goods_desc, :hsn_acs_code, :quantity, :rate, :taxable_value])
 	end
 end
