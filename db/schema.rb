@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190327052158) do
+ActiveRecord::Schema.define(version: 20190327162038) do
 
   create_table "goods_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at", null: false
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20190327052158) do
     t.float "quantity", limit: 24
     t.float "rate", limit: 24
     t.float "taxable_value", limit: 24
-    t.float "total_taxable_value", limit: 24
     t.float "cartage", limit: 24
     t.float "cgst", limit: 24
     t.float "sgst", limit: 24
@@ -39,6 +38,7 @@ ActiveRecord::Schema.define(version: 20190327052158) do
     t.string "vehicle_no"
     t.datetime "supply_date_time"
     t.string "supply_place"
+    t.float "total_taxable_value", limit: 24
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

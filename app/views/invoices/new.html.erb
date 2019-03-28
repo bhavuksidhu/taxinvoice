@@ -8,13 +8,29 @@
 	Supply Date & Time: <%= f.datetime_field :supply_date_time %><br>
 	Place of Supply: <%= f.text_field :supply_place %><br>
 	<div>
-	<%= f.fields_for :goods_details do |builder| %>
-		<%= render 'goods_detail_fields', f: builder %>
-	<% end %>
-	<div class="links">
-    <%= link_to_add_association 'add more', f, :goods_details %>
+		<%= f.fields_for :goods_details do |builder| %>
+			<%= render 'goods_detail_fields', f: builder %>
+		<% end %>
+		<div class="links">
+	    <%= link_to_add_association 'add more', f, :goods_details %>
+		</div>
 	</div>
-	</div>
-	<%#= link_to_add_row('Add More', f, :goods_details, class: 'btn btn-primary') %>
+	Total Taxable Value: <%= f.text_field :total_taxable_value, class: "total_taxable_value", value: ""  %><br>
+
 	<%= f.submit %>
  <% end %>
+
+
+<script type="text/javascript">
+	$(document).on("keyup", ".quantity,.rate", function() {
+		var sum = 0;
+		var rate = $(".rate", this.parentNode).val() || 0
+    var quantity = $(".quantity", this.parentNode).val() || 0;
+    var total = rate * quantity;
+  	$(".taxable_value", this.parentNode).val(total);
+  	$(".taxable_value").each(function(){
+    	sum = sum + parseInt($(this).val());
+    });
+    $('.total_taxable_value').val(sum)
+	});
+</script>

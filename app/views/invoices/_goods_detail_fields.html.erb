@@ -1,7 +1,8 @@
 <div class="nested-fields">
-	Goods Description<%= f.text_field :goods_desc %>
-	HSN/ACS Code<%= f.text_field :hsn_acs_code %>
-	Quantity<%= f.text_field :quantity %>
-	Rate<%= f.text_field :rate %>
+	Goods Description<%= f.text_field :goods_desc, class: "goods_desc"%>
+	HSN/ACS Code<%= f.text_field :hsn_acs_code, class: "hsn_acs_code" %>
+	Quantity<%= f.text_field :quantity, class: "quantity" %>
+	Rate<%= f.text_field :rate, class: "rate" %>
+	Taxable Value <%= f.text_field :taxable_value, class: "taxable_value" %>
 	<%= link_to_remove_association "Remove", f %>
 </div>
