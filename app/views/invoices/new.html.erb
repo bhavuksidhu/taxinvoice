@@ -1,30 +1,15 @@
 <div class="container">
 	<h1>aqib</h1>
 </div>
-
-
-
 <h1>New Invoice</h1>
-<% if @invoice.errors.any? %>
-  <div id="validation_errors">
-    <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
- 
-    <ul>
-    <% @invoice.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @invoice, url: invoices_path, method: :post do |f| %>
-	Name of Buyer: <%= f.text_field :buyer_name %><br>
-	Address of Buyer: <%= f.text_area :buyer_address %><br>
-	GSTIN No.: <%= f.text_field :buyer_gstin_no %><br>
-	Transportation Mode: <%= f.text_field :transportation_mode %><br>
-	Vehicle No: <%= f.text_field :vehicle_no %><br>
-	Supply Date & Time: <%= f.datetime_field :supply_date_time %><br>
-	Place of Supply: <%= f.text_field :supply_place %><br>
+<%= form_for @invoice, url: invoices_path, method: :post, html: {id: 'invoice_form'}  do |f| %>
+	Name of Buyer: <%= f.text_field :buyer_name, required: true %><br>
+	Address of Buyer: <%= f.text_area :buyer_address, required: true %><br>
+	GSTIN No.: <%= f.text_field :buyer_gstin_no, required: true %><br>
+	Transportation Mode: <%= f.text_field :transportation_mode, required: true %><br>
+	Vehicle No: <%= f.text_field :vehicle_no, required: true %><br>
+	Supply Date & Time: <%= f.datetime_field :supply_date_time, required: true %><br>
+	Place of Supply: <%= f.text_field :supply_place, required: true %><br>
 	<div>
 		<%= f.fields_for :goods_details do |builder| %>
 			<%= render 'goods_detail_fields', f: builder %>
@@ -34,11 +19,11 @@
 		</div>
 	</div>
 	Total Taxable Value: <%= f.text_field :total_taxable_value, :readonly => true, class: "total_taxable_value", value: ""  %><br>
-	CGST (in %): <%= f.text_field :cgst, class: "cgst" %>
+	CGST (in %): <%= f.text_field :cgst, required: true	, class: "cgst" %>
 	Total CGST: <%= f.text_field :tot_cgst, :readonly => true, class: "tot_cgst" %><br>
-	SGST (in %): <%= f.text_field :sgst, class: "sgst" %>
+	SGST (in %): <%= f.text_field :sgst, required: true, class: "sgst" %>
 	Total SGST: <%= f.text_field :tot_sgst, :readonly => true, class: "tot_sgst" %><br>
-	IGST (in %): <%= f.text_field :igst, class: "igst" %>
+	IGST (in %): <%= f.text_field :igst, required: true, class: "igst" %>
 	Total IGST: <%= f.text_field :tot_igst, :readonly => true, class: "tot_igst" %><br>
 	Cartage: <%= f.text_field :cartage, class: "cartage" %><br>
 	Invoice Total: <%= f.text_field :invoice_total, :readonly => true, class: "invoice_total" %><br>
@@ -52,31 +37,31 @@
 		var rate = $(".rate", this.parentNode).val() || 0
     var quantity = $(".quantity", this.parentNode).val() || 0;
     var total = rate * quantity;
-  	$(".taxable_value", this.parentNode).val(total);
+  	$(".taxable_value", this.parentNode).val(parseFloat(total).toFixed(2));
   	$(".taxable_value").each(function(){
-    	sum = sum + parseInt($(this).val());
+    	sum = sum + parseFloat($(this).val());
     });
-    $('.total_taxable_value').val(sum);
+    $('.total_taxable_value').val(parseFloat(sum).toFixed(2));
 	});
 	$(document).on("keyup", ".total_taxable_value,.cgst", function() {
 		var total_value = $(".total_taxable_value", this.parentNode).val() || 0
     var cgst = $(".cgst", this.parentNode).val() || 0;
     var total = total_value * cgst/100;
-    $('.tot_cgst').val(total)
+    $('.tot_cgst').val(parseFloat(total).toFixed(2))
 	});
 
 	$(document).on("keyup", ".total_taxable_value,.sgst", function() {
 		var total_value = $(".total_taxable_value", this.parentNode).val() || 0
     var sgst = $(".sgst", this.parentNode).val() || 0;
     var total = total_value * sgst/100;
-    $('.tot_sgst').val(total)
+    $('.tot_sgst').val(parseFloat(total).toFixed(2))
 	});
 
 	$(document).on("keyup", ".total_taxable_value,.igst", function() {
 		var total_value = $(".total_taxable_value", this.parentNode).val() || 0
     var igst = $(".igst", this.parentNode).val() || 0;
     var total = total_value * igst/100;
-    $('.tot_igst').val(total)
+    $('.tot_igst').val(parseFloat(total).toFixed(2))
 	});
 
 	$(document).on("keyup", ".total_taxable_value,.tot_cgst,.tot_sgst,.tot_igst,.cartage", function() {
@@ -86,6 +71,7 @@
     var tot_igst = $(".tot_igst", this.parentNode).val() || 0;
     var cartage = $(".cartage", this.parentNode).val() || 0;
     var total = parseFloat(total_value) + parseFloat(tot_cgst) + parseFloat(tot_sgst) + parseFloat(tot_igst) + parseFloat(cartage);
-    $('.invoice_total').val(total)
+    $('.invoice_total').val(parseFloat(total).toFixed(2))
 	});
+
 </script>

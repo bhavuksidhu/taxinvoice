@@ -1,8 +1,8 @@
 <div class="nested-fields">
-	Goods Description<%= f.text_field :goods_desc, class: "goods_desc"%>
-	HSN/ACS Code<%= f.text_field :hsn_acs_code, class: "hsn_acs_code" %>
-	Quantity<%= f.text_field :quantity, class: "quantity" %>
-	Rate<%= f.text_field :rate, class: "rate" %>
+	Goods Description<%= f.text_field :goods_desc, required: true, class: "goods_desc"%>
+	HSN/ACS Code<%= f.text_field :hsn_acs_code, required: true, class: "hsn_acs_code" %>
+	Quantity<%= f.text_field :quantity, required: true, class: "quantity" %>
+	Rate<%= f.text_field :rate, required: true, class: "rate" %>
 	Taxable Value <%= f.text_field :taxable_value, :readonly => true, class: "taxable_value" %>
 	<%= link_to_remove_association "Remove", f %>
 </div>

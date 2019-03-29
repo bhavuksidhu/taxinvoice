@@ -1,0 +1,27 @@
+<h1>Hello</h1>
+
+Invoice No: <%= @invoice.id %><br>
+Invoice Date: <%= @invoice.created_at %><br>
+Buyer Name: <%= @invoice.buyer_name %><br>
+Buyer Address: <%= @invoice.buyer_address %><br>
+GSTIN No: <%= @invoice.buyer_gstin_no %><br>
+Transportation Mode: <%= @invoice.transportation_mode %><br>
+Vehicle No: <%= @invoice.vehicle_no %><br>
+Supply Date & Time: <%= @invoice.supply_date_time %><br>
+Place of Supply: <%= @invoice.supply_place %><br>
+<% @invoice.goods_details.each do |good| %>
+	Goods Description: <%= good.goods_desc %><br/>
+	HSN/ACS Code: <%= good.hsn_acs_code %><br/>
+	Quantity: <%= good.quantity %><br/>
+	Rate: <%= good.rate %><br/>
+	Taxable Value: <%= good.taxable_value %><br/>
+<% end %>
+Total Taxable Value: <%= @invoice.total_taxable_value %><br>
+CGST (in %): <%= @invoice.cgst %><br>
+Total CGST: <%= @invoice.tot_cgst %><br>
+SGST (in %): <%= @invoice.sgst %><br>
+Total SGST: <%= @invoice.tot_sgst %><br>
+IGST (in %): <%= @invoice.igst %><br>
+Total IGST: <%= @invoice.tot_igst %><br>
+Cartage: <%= @invoice.cartage %><br>
+Invoice Total: <%= @invoice.invoice_total %><br>

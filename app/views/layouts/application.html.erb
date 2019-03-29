@@ -13,9 +13,11 @@
       <header>
         <div class="header_inner">
           <ul>
+            <% if user_signed_in? %>
             <li>
               <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
             </li>
+            <% end %>
           </ul>
         </div>
       </header>
@@ -24,8 +26,10 @@
           <div class="left_side_bar">
             <div class="items">
               <ul class="custom_ul">
+                <% if user_signed_in? %>
                 <li><a href="/invoices/new">Generate Invoice</a></li>
                 <li><a href="#">Contact</a></li>
+                <% end %>
               </ul>
             </div>
           </div>
