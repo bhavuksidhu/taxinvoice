@@ -206,6 +206,7 @@
       }
       .links{
         padding: 26px 0;
+            margin-top: -75px;
         .add_fields{
           padding: 6px 15px;
           background: #ff8484;
@@ -216,7 +217,8 @@
       }
       .custom_remove{
         padding: 26px 0;
-        float: right;
+        text-align: right;
+            margin-top: -26px;
         a.remove_fields.dynamic{
           padding: 6px 15px;
           background: #ff8484;
@@ -230,6 +232,7 @@
 }
 
 
+/*  pdf css  */
 
 
 
