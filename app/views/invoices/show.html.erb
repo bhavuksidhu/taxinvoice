@@ -1,14 +1,15 @@
 
-Invoice No: <%= @invoice.serial_number %><br>
-Invoice Date: <%= @invoice.created_at %><br>
+Invoice No: <%= @invoice.save_invoice_number %><br>
+Invoice Date: <%= @invoice.created_at.strftime("%d-%m-%Y at %I:%M %p") %><br>
 Buyer Name: <%= @invoice.buyer_name %><br>
 Buyer Address: <%= @invoice.buyer_address %><br>
 GSTIN No: <%= @invoice.buyer_gstin_no %><br>
 Transportation Mode: <%= @invoice.transportation_mode %><br>
 Vehicle No: <%= @invoice.vehicle_no %><br>
-Supply Date & Time: <%= @invoice.supply_date_time %><br>
+Supply Date & Time: <%= @invoice.supply_date_time.strftime("%d-%m-%Y at %I:%M %p") %><br>
 Place of Supply: <%= @invoice.supply_place %><br>
-	<% @invoice.goods_details.each do |good| %>
+	<% @invoice.goods_details.each.with_index(1) do |good, index| %>
+		Sr No: <%= index %></br>
 		Goods Description: <%= good.goods_desc %><br/>
 		HSN/ACS Code: <%= good.hsn_acs_code %><br/>
 		Quantity: <%= good.quantity %><br/>

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20190329100030) do
     t.float "tot_igst", limit: 24
     t.float "cartage", limit: 24
     t.float "invoice_total", limit: 24
+    t.string "invoice_no"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
