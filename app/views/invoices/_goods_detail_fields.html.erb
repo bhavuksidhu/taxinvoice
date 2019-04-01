@@ -1,0 +1,11 @@
+<div class="nested-fields">
+	<label for="">Goods Description</label><%= f.text_field :goods_desc, class: "goods_desc"%>
+	<label for="">HSN/ACS Code</label><%= f.text_field :hsn_acs_code, class: "hsn_acs_code" %>
+	<!-- <div class="row"></div> -->
+	<label for="">Quantity</label><%= f.number_field :quantity, step: :any, class: "quantity" %>
+	<label for="">Rate</label><%= f.number_field :rate, step: :any, class: "rate" %>
+	<label for="">Taxable Value</label> <%= f.text_field :taxable_value, :readonly => true, class: "taxable_value" %>
+	<div class="custom_remove">
+		<%= link_to_remove_association "Remove", f %>
+	</div>
+</div>
