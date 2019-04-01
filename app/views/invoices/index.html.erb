@@ -6,7 +6,7 @@
         <tr>
           <th class="th-sm">Buyer Name</th>
           <th class="th-sm">Created at</th>
-          <th class="th-sm"></th>
+          <th class="th-sm">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -14,7 +14,7 @@
           <tr>
             <td><%=invoice.buyer_name%></td>
             <td><%=invoice.created_at.strftime("%d/%m/%Y")%></td>
-            <td><%=link_to 'view', invoice_path(invoice)%></td>
+            <td><%=link_to 'View', invoice_path(invoice)%>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%=link_to 'Edit', edit_invoice_path(invoice)%></td>
           </tr>
         <%end%>
       </tbody>

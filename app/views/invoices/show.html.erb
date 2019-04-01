@@ -143,15 +143,14 @@
     </div>
     <div class="custom_butns">
       <a href="javascript:void(0);" onclick="print_pdf()" target="_blank">Print</a>
-      <a href="javascript:void(0);" >Edit</a>
+      <a href="<%=edit_invoice_path(@invoice)%>">Edit</a>
     </div>
   </div>
 </div>
-
-
 
 <script type="text/javascript">
   function print_pdf(){
     window.print()
   } 
 </script>
+
