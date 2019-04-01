@@ -9,15 +9,12 @@ class InvoicesController < ApplicationController
 	def create
 		@invoice = Invoice.new(invoice_params)
 		if @invoice.save
-		  redirect_to invoice_path(@invoice.id, format: :pdf)
+		  redirect_to invoice_path(@invoice.id)
 		else
 		  render :new
 		end
 	end
 
-	def invoice_params
-		params.require(:invoice).permit(:buyer_name, :buyer_address, :buyer_gstin_no, :transportation_mode, :vehicle_no, :supply_date_time, :supply_place, :total_taxable_value, :total_taxable_value,:cgst, :tot_cgst, :sgst, :tot_sgst, :igst, :tot_igst, :cartage, :invoice_total, goods_details_attributes: [:id, :_destroy, :goods_desc, :hsn_acs_code, :quantity, :rate, :taxable_value])
-	end
 
   def show
     @invoice = Invoice.find_by id: params[:id] 
@@ -31,9 +28,24 @@ class InvoicesController < ApplicationController
     end
   end
   # Open invoice in browser in pdf format for printing invoice
+  def edit
+    @invoice = Invoice.find_by id: params[:id]
+  end
 
+  def update
+    @invoice = Invoice.find_by id: params[:id]
+    if @invoice.update(invoice_params)
+      redirect_to invoice_path(@invoice)
+    else
+      render :edit
+    end
+  end
 
   private
+    def invoice_params
+      params.require(:invoice).permit(:buyer_name, :buyer_address, :buyer_gstin_no, :transportation_mode, :vehicle_no, :supply_date_time, :supply_place, :total_taxable_value, :total_taxable_value,:cgst, :tot_cgst, :sgst, :tot_sgst, :igst, :tot_igst, :cartage, :invoice_total, goods_details_attributes: [:id, :_destroy, :goods_desc, :hsn_acs_code, :quantity, :rate, :taxable_value])
+    end
+    
     def get_invoice_name
       return "abcd"
     end

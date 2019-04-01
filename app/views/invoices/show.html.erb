@@ -25,3 +25,4 @@ IGST (in %): <%= @invoice.igst %><br>
 Total IGST: <%= @invoice.tot_igst %><br>
 Cartage: <%= @invoice.cartage %><br>
 Invoice Total: <%= @invoice.invoice_total %><br>
+<%= link_to 'Edit', edit_invoice_path(@invoice)%>
