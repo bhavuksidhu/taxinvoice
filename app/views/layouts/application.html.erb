@@ -3,11 +3,8 @@
   <head>
     <title>TaxInvoice</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-    <!-- <link rel = "stylesheet" type = "text/css" media = "print" href = "pdf.css"> -->
   </head>
 
   <body>
@@ -19,27 +16,15 @@
           </div>
           <ul>
             <% if user_signed_in? %>
-              <li><a href="/invoices/new">Generate Invoice</a></li>
-            <%end%>
-            <% if user_signed_in? %>
-            <li>
-              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-            </li>
+              <li><%=link_to 'Generate Invoice', root_path%></li>
+              <li><%=link_to 'All Invoices', invoices_path%></li>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+              </li>
             <% end %>
           </ul>
         </div>
       </header>
-      <!-- <div class="col-xm-12 col-sm-2 col-md-2 pd_0">
-        <div class="left_side_bar">
-          <div class="items">
-            <ul class="custom_ul">
-              <%# if user_signed_in? %>
-              <li><a href="/invoices/new">Generate Invoice</a></li>
-              <%#end%>
-            </ul>
-          </div>
-        </div>
-      </div> -->
       <div class=" pd_0">
         <div class="pd_top" style="padding-top: 48px;">
           <%= yield %>
