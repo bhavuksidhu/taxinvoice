@@ -13,7 +13,7 @@ class Invoice < ApplicationRecord
     e = c.first
     f = d.first.to_i
     goods = Invoice.where("DATE(created_at) >= ? AND DATE(created_at) <= ? ", a , b).count
-    self.invoice_no = "#{e}/#{f%100}/%.3d" % "#{goods +1 }"
+    self.invoice_no = "#{e}/#{f%100}/%.3d" % "#{goods +1}"
     end
 
 end

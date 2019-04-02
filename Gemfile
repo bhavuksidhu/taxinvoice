@@ -21,7 +21,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'city-state'
 
 # Use mysql as the database for Active Record
-#gem 'pg', '~> 0.18.4'
 gem 'mysql2', '~> 0.5.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

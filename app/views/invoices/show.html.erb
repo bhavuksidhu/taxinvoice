@@ -82,10 +82,10 @@
                 <td colspan="3">
                   <table>
                     <tr style="border-bottom: 2px solid;">
-                      <td><b>CGST (in %): </b><%= '%.2f' % @invoice.cgst %></td>
+                      <td><b>CGST (in %): </b><%= @invoice.cgst %></td>
                     </tr>
                     <tr>
-                      <td><b>SGST (in %): </b><%= '%.2f' % @invoice.sgst %></td>
+                      <td><b>SGST (in %): </b><%= @invoice.sgst %></td>
                     </tr>
                   </table>
                 </td>
@@ -106,7 +106,7 @@
                 <td colspan="3">
                   <table>
                     <tr>
-                      <td><b>IGST (in%): </b><%= '%.2f' % @invoice.igst %></td>
+                      <td><b>IGST (in%): </b><%= @invoice.igst %></td>
                     </tr>
                     <tr style="border-top: 2px solid; font-weight: 700;">
                       <td><b>Cartage </b></td>
@@ -119,7 +119,7 @@
                       <td><%= '%.2f' % @invoice.tot_igst %></td>
                     </tr>
                     <tr style="border-top: 2px solid;">
-                      <td><%= '%.2f' % @invoice.cartage %></td>
+                      <td><%= @invoice.cartage %></td>
                     </tr>
                   </table>
                 </td>
