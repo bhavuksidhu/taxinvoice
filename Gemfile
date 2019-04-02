@@ -18,9 +18,10 @@ gem 'pry-rails'
 gem 'wkhtmltopdf-binary', '~> 0.12.4'
 gem 'fiscali'
 gem 'bootstrap-datepicker-rails'
+gem 'city-state'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.6.0'
+gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
