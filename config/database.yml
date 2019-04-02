@@ -1,7 +1,41 @@
+# development:
+#   adapter: mysql2
+#   database: taxinvoice_development
+#   encoding: utf8
+#   username: root
+#   password: password
+#   host: localhost
+
+
+
+
+
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   # For details on connection pooling, see Rails configuration guide
+#   # http://guides.rubyonrails.org/configuring.html#database-pooling
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: apple
+#   password:
+#   host: localhost
+
+# development:
+#   <<: *default
+#   database: school_mgnmt_development
+
 development:
-  adapter: mysql2
-  database: taxinvoice_development
-  encoding: utf8
-  username: root
-  password: password
-  host: localhost
+ adapter: postgresql
+ database: school_mgt_development
+ username: apple
+ password:
+ host: localhost
+ port: 5432
+
+production:
+ adapter: postgresql
+ database: school_mgt_development
+ username: apple
+ password:
+ host: localhost
+ port: 5432
