@@ -3,4 +3,5 @@ development:
   database: taxinvoice_development
   encoding: utf8
   username: root
+  password: password
   host: localhost

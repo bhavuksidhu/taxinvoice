@@ -24,6 +24,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
+    @invoice = Invoice.find_by(params[:id])
   end
 
   def update
