@@ -1,26 +1,27 @@
 <div class="pdf">
   <div class="pdf_inner">
     <div class="content_pdf">
-      <span class="top_no">GSTIN: AASDFGH8745212</span>
+      <span class="top_no">GSTIN: 07AJCPM5160E1ZH</span>
       <span class="top_name"><u>TAX INVOICE</u></span>
     </div>
     <div class="content_part">
       <div class="brand_name">
           <div class="right_contact">
+            <span class="phone">9718619786</span>
+            <span class="phone">9818619786</span>
             <span class="phone">9810308711</span>
-            <span class="phone">9818619768</span>
             <span>E-mail : arshadmalikcool@gmail.com</span>
           </div>
         <h1 class="big_text">M/S. AVON PAPER</h1>
-        <P class="normal_text">Deals In : Polyster Metalize, H.M.L.D, B.O.P.P., Holo Graphic Film</P>
+        <P class="normal_text">Deals In : Polyster Metalize, H.M.L.D, B.O.P.P., Holographic Film</P>
       </div>
       <div class="address">
         <p>A2, Gali No. 4/5, Babu Nagar, Old Mustafabad, Main Brijpuri Road, Delhi-110094</p>
       </div>
       <div class="invoice_part">
         <div class="lft">
-          <span><label>Invoice Serial No: </label><%= @invoice.save_invoice_number %></span>
-          <span><label>Invoice Date: </label><%= @invoice.created_at.strftime("%d-%m-%Y at %I:%M %p") %></span>
+          <span><label>Invoice Serial No: </label> <%= @invoice.invoice_no %></span>
+          <span><label>Invoice Date: </label> <%= @invoice.created_at.strftime("%d-%m-%Y at %I:%M %p") %></span>
         </div>
         <div class="rig">
           <span><label>Transportation Mode: </label> <%= @invoice.transportation_mode %></span>
@@ -31,7 +32,7 @@
       </div>
         <div class="details">
           <div class="d-head">
-            <p>Details of Receiver (Billod to)</p>
+            <p>Details of Receiver (Billed to)</p>
           </div>
           <div class="fill">
             <div class="fill_inner">
@@ -39,6 +40,9 @@
             </div>
             <div class="fill_inner">
               <span>Address : </span> <label><%= @invoice.buyer_address %></label>
+            </div>
+            <div class="fill_inner">
+              <span>State : </span> <label><%= @invoice.state %></label>
             </div>
             <div class="fill_inner">
               <span>GSTIN : </span> <label><%= @invoice.buyer_gstin_no %></label>
@@ -57,41 +61,41 @@
                 <td>Taxable Value</td>
               </tr>
             </thead>
-            <% @invoice.goods_details.each.with_index(1) do |good, index| %>
-            <tbody>
-              <tr>
-                <td><%= index %></td>
-                <td><%= good.goods_desc %></td>
-                <td><%= good.hsn_acs_code %></td>
-                <td><%= good.quantity %></td>
-                <td><%= good.rate %></td>
-                <td><%= good.taxable_value %></td>
-              </tr>
-            <% end %>
+            <tbody class="border-thick">
+              <% @invoice.goods_details.each.with_index(1) do |good, index| %>
+                <tr>
+                  <td><%= index %></td>
+                  <td><%= good.goods_desc %></td>
+                  <td><%= good.hsn_acs_code %></td>
+                  <td><%= '%.2f' % good.quantity %></td>
+                  <td><%= '%.2f' % good.rate %></td>
+                  <td><%= '%.2f' % good.taxable_value %></td>
+                </tr>
+              <% end %>
               <tr style="border-top:2px solid;border-bottom: 2px solid; text-align: right;">
                 <td colspan="2"></td>
                 <td colspan="3"><b> Total </b> </td>
-                <td><%= @invoice.total_taxable_value %></td>
+                <td><%= '%.2f' % @invoice.total_taxable_value %></td>
               </tr>
               <tr style="border-bottom: 2px solid;">
                 <td colspan="2"></td>
                 <td colspan="3">
                   <table>
                     <tr style="border-bottom: 2px solid;">
-                      <td><b>CGST (in %): </b><%= @invoice.cgst %></td>
+                      <td><b>CGST (in %): </b><%= '%.2f' % @invoice.cgst %></td>
                     </tr>
                     <tr>
-                      <td><b>SGST (in %): </b><%= @invoice.sgst %></td>
+                      <td><b>SGST (in %): </b><%= '%.2f' % @invoice.sgst %></td>
                     </tr>
                   </table>
                 </td>
                 <td>
                   <table>
                     <tr style="border-bottom: 2px solid;">
-                      <td><%= @invoice.tot_cgst %></td>
+                      <td><%= '%.2f' % @invoice.tot_cgst %></td>
                     </tr>
                     <tr>
-                      <td><%= @invoice.tot_sgst %></td>
+                      <td><%= '%.2f' % @invoice.tot_sgst %></td>
                     </tr>
                   </table>
                 </td>
@@ -102,20 +106,20 @@
                 <td colspan="3">
                   <table>
                     <tr>
-                      <td><b>IGST (in%): </b><%= @invoice.igst %></td>
+                      <td><b>IGST (in%): </b><%= '%.2f' % @invoice.igst %></td>
                     </tr>
                     <tr style="border-top: 2px solid; font-weight: 700;">
-                      <td><b>Cartage: </b></td>
+                      <td><b>Cartage </b></td>
                     </tr>
                   </table>
                 </td>
                 <td>
                   <table>
                     <tr>
-                      <td><%= @invoice.tot_igst %></td>
+                      <td><%= '%.2f' % @invoice.tot_igst %></td>
                     </tr>
                     <tr style="border-top: 2px solid;">
-                      <td><%= @invoice.cartage %></td>
+                      <td><%= '%.2f' % @invoice.cartage %></td>
                     </tr>
                   </table>
                 </td>
@@ -124,7 +128,7 @@
               <tr style="border-top: 2px solid; border-bottom: 2px solid;">
                 <td colspan="2"> <b>if the particulars given above are true and correct</b></td>
                 <td colspan="3"><b>Invoice Total</b></td>
-                <td><%= @invoice.invoice_total %></td>
+                <td><%= '%.2f' % @invoice.invoice_total %></td>
               </tr>
 
             </tbody>

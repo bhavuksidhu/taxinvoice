@@ -6,6 +6,8 @@
     <label for="">Address of Buyer :
     <label for="">
       <%= f.text_area :buyer_address, required: true , class: 'textarea' %>
+      <label for="">State :<label for="">
+        <%= f.select :state, options_for_select(states) %>
       <div class="row">
         <div class="col-sm-6">
     <label for="">GSTIN No :</label> <%= f.text_field :buyer_gstin_no, required: true %>
@@ -17,7 +19,7 @@
     <label for="">Vehicle No :</label> <%= f.text_field :vehicle_no, required: true %>
     </div>
     <div class="col-sm-6">
-    <label for="">Supply Date & Time :</label> <%= f.datetime_field :supply_date_time, required: true %>
+    <label for="">Supply Date & Time :</label> <%= f.datetime_field :supply_date_time, min: Date.today, required: true %>
     </div>
     </div>
     <label for="">Place of Supply :</label> <%= f.text_field :supply_place, required: true %>
@@ -38,19 +40,19 @@
         <label for="">Total CGST :</label> <%= f.text_field :tot_cgst, :readonly => true, class: "tot_cgst" %>
       </div>
       <div class="col-sm-6">
-        <label for="">SGST (in %) :</label> <%= f.number_field :sgst,class: "sgst" %>
+        <label for="">SGST (in %) :</label> <%= f.number_field :sgst, step: :any, class: "sgst" %>
       </div>
       <div class="col-sm-6">
         <label for="">Total SGST :</label> <%= f.text_field :tot_sgst, :readonly => true, class: "tot_sgst" %>
       </div>
       <div class="col-sm-6">
-        <label for="">IGST (in %) :</label> <%= f.number_field :igst, class: "igst" %>
+        <label for="">IGST (in %) :</label> <%= f.number_field :igst, step: :any, class: "igst" %>
       </div>
       <div class="col-sm-6">
         <label for="">Total IGST :</label> <%= f.text_field :tot_igst, :readonly => true, class: "tot_igst" %>
       </div>
       <div class="col-sm-6">
-        <label for="">Cartage :</label> <%= f.number_field :cartage, class: "cartage" %>
+        <label for="">Cartage :</label> <%= f.number_field :cartage, step: :any, class: "cartage" %>
       </div>
       <div class="col-sm-6">
         <label for="">Invoice Total :</label> <%= f.text_field :invoice_total, :readonly => true, class: "invoice_total" %>

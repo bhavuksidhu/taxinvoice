@@ -152,7 +152,7 @@
       text-align: center;
     }
     form , .nested-fields{
-      input{
+      input, select{
         width: 100%;
         display: block;
         outline: none;
@@ -160,6 +160,8 @@
         margin-bottom: 20px;
         padding: 5px 10px;
         transition: .4s;
+        height: 36px;
+        background: transparent;
         &:focus{
           //width: 100%;
           border-color: #5f5f5f;

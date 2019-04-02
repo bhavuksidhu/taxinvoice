@@ -5,6 +5,7 @@
       <thead>
         <tr>
           <th class="th-sm">Buyer Name</th>
+          <th class="th-sm">Invoice Number</th>
           <th class="th-sm">Created at</th>
           <th class="th-sm">Action</th>
         </tr>
@@ -13,6 +14,7 @@
         <%@invoices.each do |invoice|%>
           <tr>
             <td><%=invoice.buyer_name%></td>
+            <td><%=invoice.invoice_no%></td>
             <td><%=invoice.created_at.strftime("%d/%m/%Y")%></td>
             <td><%=link_to 'View', invoice_path(invoice)%>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<%=link_to 'Edit', edit_invoice_path(invoice)%></td>
           </tr>
