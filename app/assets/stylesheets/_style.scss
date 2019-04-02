@@ -70,7 +70,7 @@
   }
   .main{
    position: relative;
-   background-image: linear-gradient(to right top, #5c9dff, #00c0ff, #00dae6, #00e98e, #a8eb12);
+   background: #efefef;
    height: 92.8vh;
    margin: 0;
    padding: 0;
@@ -85,15 +85,20 @@
    transform:translate(-50% , -50%);
    padding: 20px 15px;
    width: 350px;
-   background-image: linear-gradient(to right   bottom, #70e0f1, #76e7f5, #7dedf8, #84f4fc, #8bfaff);
-    box-shadow: 0 15px 15px #1a19196e;
+   background: #ffffff00;
+    box-shadow:0 8px 15px #1a191936;
    border-radius: 5px;
 
   }
   .inner h1{
    text-align: center;
    font-size: 30px;
-   color:#fff;
+   color:#6d6d6d;
+  }
+  .inner h2{
+   text-align: center;
+   font-size: 24px;
+   color:#6d6d6d;
   }
   .full{
    display: block;
@@ -110,16 +115,24 @@
    box-shadow: 0 2px 4px #1c172273;
   }
   .check{
-   margin-bottom: 15px;
+   //margin-bottom: 15px;
   }
-  .log_in_submit{
+  .label{
+    margin: 0;
+    color: #656565;
+    font-size: 16px;
+  }
 
+  .log_in_submit{
+    a{
+
+    }
     input[type="submit"]{
      border: none;
-     padding: 10px 30px;
+     padding: 6px 26px;
      display: block;
      margin: 0 auto;
-     margin-top: 15px;
+     margin-top: 10px;
      background: #00CCEB;
      border-radius: 25px;
      color: #fff;
@@ -130,12 +143,49 @@
      box-shadow: 0 5px 10px #237061b3;
     }
   }
+  .send_me{
+    input{
+      border: none;
+      outline: none;
+      padding: 7px;
+      background: #5ecceb;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 auto;
+      display: block;
+      width: 100%;
+    }
+  }
+  .password_go_submit{
+    margin-top: 20px;
+    text-align: center;
+    a{
+      padding: 6px 26px;
+      margin: 0 auto;
+      margin-top: 10px;
+      background: #00CCEB;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;  
+    }
+  }
   .lable{
    font-size: 16px;
    display: inline-block;
    position: relative;
    top: -3px;
    left: 5px;
+  }
+  .forget{
+    margin-top: 10px;
+    a{
+      font-size: 14px;
+      color: #656565;
+      text-decoration: none;
+    }
   }
 }
 
