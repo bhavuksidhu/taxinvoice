@@ -21,6 +21,7 @@ gem 'wkhtmltopdf-binary', '~> 0.12.4'
 gem 'fiscali'
 gem 'bootstrap-datepicker-rails'
 gem 'city-state'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 # Use mysql as the database for Active Record
 #gem 'mysql2', '~> 0.5.2'
