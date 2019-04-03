@@ -24,7 +24,6 @@ gem 'city-state'
 
 # Use mysql as the database for Active Record
 #gem 'mysql2', '~> 0.5.2'
-gem 'pg', '~> 0.18.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -70,5 +69,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production, :staging do
   gem 'rails_12factor'
+  gem 'pg', '~> 0.18.4'
 end
 
