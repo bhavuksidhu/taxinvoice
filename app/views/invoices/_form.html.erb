@@ -23,7 +23,7 @@
     </div>
     </div>
     <label for="">Place of Supply :</label> <%= f.text_field :supply_place, required: true %>
-    <div>
+    <div class="position">
       <%= f.fields_for :goods_details do |builder| %>
       <%= render 'goods_detail_fields', f: builder %>
       <% end %>

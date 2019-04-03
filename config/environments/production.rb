@@ -62,6 +62,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "tax_invoice_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = {host: 'https://taxinvoice.herokuapp.com/'}
+  ActionMailer::Base.smtp_settings  = :smtp
+  config.action_mailer.smtp_settings = {
+  :user_name => 'apikey',
+  :password => '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',
+  :domain => 'sendgrid.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

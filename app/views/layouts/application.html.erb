@@ -2,14 +2,36 @@
 <html>
   <head>
     <title>TaxInvoice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
 
   <body>
     <div class="main_wraper">
-      <header>
+      <nav class="navbar navbar-expand-sm fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">AVON PAPER</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <% if user_signed_in? %>
+                <li class="nav-item"><%=link_to 'Generate Invoice', root_path , class: 'nav-link'%></li>
+                <li class="nav-item"><%=link_to 'All Invoices', invoices_path , class: 'nav-link'%></li>
+                <li class="nav-item">
+                  <%= link_to "Logout", destroy_user_session_path, :method => :delete , class: 'nav-link'%>
+                </li>
+              <% end %>   
+            </ul>
+          </div>
+        </div>  
+      </nav>
+      <!-- <header>
         <div class="header_inner">
           <div class="brand">
             <a href="<%=root_path%>">AVON PAPER</a>
@@ -25,7 +47,7 @@
           </ul>
         </div>
       </header>
-      <div class=" pd_0">
+ -->      <div class=" pd_0">
         <div class="pd_top" style="padding-top: 48px;">
           <%= yield %>
         </div>
