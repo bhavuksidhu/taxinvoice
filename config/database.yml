@@ -1,7 +1,0 @@
-development:
-  adapter: mysql2
-  database: taxinvoice_development
-  encoding: utf8
-  username: root
-  password: Puneet@12
-  host: localhost

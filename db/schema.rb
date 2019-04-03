@@ -12,23 +12,26 @@
 
 ActiveRecord::Schema.define(version: 20190402073653) do
 
-  create_table "goods_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "goods_details", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "invoice_id"
     t.string "goods_desc"
     t.string "hsn_acs_code"
-    t.float "quantity", limit: 24
-    t.float "rate", limit: 24
-    t.float "taxable_value", limit: 24
-    t.float "cartage", limit: 24
-    t.float "cgst", limit: 24
-    t.float "sgst", limit: 24
-    t.float "igst", limit: 24
-    t.float "invoice_total", limit: 24
+    t.float "quantity"
+    t.float "rate"
+    t.float "taxable_value"
+    t.float "cartage"
+    t.float "cgst"
+    t.float "sgst"
+    t.float "igst"
+    t.float "invoice_total"
   end
 
-  create_table "invoices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "invoices", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "buyer_name"
@@ -38,20 +41,20 @@ ActiveRecord::Schema.define(version: 20190402073653) do
     t.string "vehicle_no"
     t.datetime "supply_date_time"
     t.string "supply_place"
-    t.float "total_taxable_value", limit: 24
-    t.float "cgst", limit: 24
-    t.float "tot_cgst", limit: 24
-    t.float "sgst", limit: 24
-    t.float "tot_sgst", limit: 24
-    t.float "igst", limit: 24
-    t.float "tot_igst", limit: 24
-    t.float "cartage", limit: 24
-    t.float "invoice_total", limit: 24
+    t.float "total_taxable_value"
+    t.float "cgst"
+    t.float "tot_cgst"
+    t.float "sgst"
+    t.float "tot_sgst"
+    t.float "igst"
+    t.float "tot_igst"
+    t.float "cartage"
+    t.float "invoice_total"
     t.string "invoice_no"
     t.string "state"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
