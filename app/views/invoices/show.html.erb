@@ -7,8 +7,8 @@
     <div class="content_part">
       <div class="brand_name">
           <div class="right_contact">
-            <span class="phone">9718619786</span>
             <span class="phone">9818619786</span>
+            <span class="phone">9718619786</span>
             <span class="phone">9810308711</span>
             <span>E-mail : arshadmalikcool@gmail.com</span>
           </div>
@@ -106,7 +106,7 @@
                 <td colspan="3">
                   <table>
                     <tr>
-                      <td><b>IGST (in%): </b><%= @invoice.igst %></td>
+                      <td><b>IGST (in%): </b><%= @invoice.igst %>&nbsp;</td>
                     </tr>
                     <tr style="border-top: 2px solid; font-weight: 700;">
                       <td><b>Cartage </b></td>
@@ -116,10 +116,10 @@
                 <td>
                   <table>
                     <tr>
-                      <td><%= '%.2f' % @invoice.tot_igst %></td>
+                      <td><%= '%.2f' % @invoice.tot_igst %> &nbsp;</td>
                     </tr>
                     <tr style="border-top: 2px solid;">
-                      <td><%= @invoice.cartage %></td>
+                      <td><%= @invoice.cartage %>&nbsp;</td>
                     </tr>
                   </table>
                 </td>

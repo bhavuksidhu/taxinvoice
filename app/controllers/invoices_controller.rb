@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   before_action :find_invoice, only: [:edit, :update, :show]
 
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.paginate(:page => params[:page], :per_page => 50)
   end
 
 	def new
