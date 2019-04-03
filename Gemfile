@@ -17,6 +17,8 @@ gem 'simple_form'
 gem 'pry-rails'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary', '~> 0.12.4'
+gem 'fiscally'
+
 
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.18', '< 0.6.0'

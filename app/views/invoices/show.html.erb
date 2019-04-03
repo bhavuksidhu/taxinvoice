@@ -1,6 +1,5 @@
-<h1>Hello</h1>
 
-Invoice No: <%= @invoice.id %><br>
+Invoice No: <%= @invoice.serial_number %><br>
 Invoice Date: <%= @invoice.created_at %><br>
 Buyer Name: <%= @invoice.buyer_name %><br>
 Buyer Address: <%= @invoice.buyer_address %><br>
@@ -9,13 +8,13 @@ Transportation Mode: <%= @invoice.transportation_mode %><br>
 Vehicle No: <%= @invoice.vehicle_no %><br>
 Supply Date & Time: <%= @invoice.supply_date_time %><br>
 Place of Supply: <%= @invoice.supply_place %><br>
-<% @invoice.goods_details.each do |good| %>
-	Goods Description: <%= good.goods_desc %><br/>
-	HSN/ACS Code: <%= good.hsn_acs_code %><br/>
-	Quantity: <%= good.quantity %><br/>
-	Rate: <%= good.rate %><br/>
-	Taxable Value: <%= good.taxable_value %><br/>
-<% end %>
+	<% @invoice.goods_details.each do |good| %>
+		Goods Description: <%= good.goods_desc %><br/>
+		HSN/ACS Code: <%= good.hsn_acs_code %><br/>
+		Quantity: <%= good.quantity %><br/>
+		Rate: <%= good.rate %><br/>
+		Taxable Value: <%= good.taxable_value %><br/>
+	<% end %>
 Total Taxable Value: <%= @invoice.total_taxable_value %><br>
 CGST (in %): <%= @invoice.cgst %><br>
 Total CGST: <%= @invoice.tot_cgst %><br>
