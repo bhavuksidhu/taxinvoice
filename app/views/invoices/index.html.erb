@@ -1,4 +1,3 @@
-
 <div class="custom_main">
   <div class="inner_page">
     <h3>All invoices</h3>
@@ -10,6 +9,7 @@
             <th class="th-sm">Invoice Number</th>
             <th class="th-sm">Created at</th>
             <th class="th-sm">Action</th>
+            <th class="th-sm">Send Mail</th>
           </tr>
         </thead>
         <tbody>
@@ -20,21 +20,39 @@
               <td><%=invoice.created_at.strftime("%d/%m/%Y")%></td>
               <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
                 <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %></td>
+              <td><button type="button" class="btn btn-primary send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
             </tr>
           <%end%>
         </tbody>
       </table>
-    </div>
+    </div>   
     <%= will_paginate @invoices %>
   </div>
 </div>
 
-    
+<div class="modal fade" id="Mymodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Send Email</h4>
+      </div> 
+      <div class="modal-body">
+        <%= form_tag send_invoice_path, method: :post do %>
+          <%= hidden_field_tag 'invoice_id',nil , class: 'selected_invoices' %>
+          <lable>Enter Email: </lable><%=text_field_tag 'email' %>
+          <%= submit_tag 'Send Mail' %>
+        <% end %>
+      </div>   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>                                                                       
+  </div>                                          
+</div>
 
-
-<script type="text/javascript">
-  $(document).ready(function () {
-    $('#dtBasicExample').DataTable();
-    $('.dataTables_length').addClass('bs-select');
+<script>
+  $('.send_invoice_btn').click(function(){
+    $("#invoice_id").val($(this).data('id'))
+    $('#Mymodal').modal('show')
   });
 </script>

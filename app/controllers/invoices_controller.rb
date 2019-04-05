@@ -20,8 +20,23 @@ class InvoicesController < ApplicationController
 		end
 	end
 
-  def show
+  def send_invoice
+    email = params[:email]
+    invoice = Invoice.find(params[:invoice_id])
+    InvoiceMailer.welcome(email, invoice).deliver
+    
   end
+
+  def show
+    invoice_name = @invoice.invoice_no
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @pdf = render_to_string(pdf: invoice_name, template: "invoices/pdf.html.erb", :locals => {invoice: @invoice})
+        send_data(@pdf, :filename => invoice_name, :type=>"application/pdf", disposition: "inline")
+      end
+    end
+  end    
 
   def edit
   end
@@ -34,7 +49,6 @@ class InvoicesController < ApplicationController
     end
   end
 
-
   private
     def invoice_params
       params.require(:invoice).permit!
@@ -43,4 +57,5 @@ class InvoicesController < ApplicationController
     def find_invoice
       @invoice = Invoice.find(params[:id])
     end
+
 end

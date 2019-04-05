@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+  </head>
+  <body>
+    <div class="main_wraper">
+      <div class="pd_0">
+        <div class="pd_top">
+          <div class="pdf">
+            <div class="pdf_inner">
+              <div class="content_pdf">
+                <span class="top_no">GSTIN: 07AJCPM5160E1ZH</span>
+                <span class="top_name"><u>TAX INVOICE</u></span>
+              </div>
+              <div class="content_part">
+                <div class="brand_name">
+                    <div class="right_contact">
+                      <span class="phone">9818619786</span>
+                      <span class="phone">9718619786</span>
+                      <span class="phone">9810308711</span>
+                      <span>E-mail : arshadmalikcool@gmail.com</span>
+                    </div>
+                  <h1 class="big_text">M/S. AVON PAPER</h1>
+                  <P class="normal_text">Deals In : Polyster Metalize, H.M.L.D, B.O.P.P., Holographic Film</P>
+                </div>
+                <div class="address">
+                  <p>A2, Gali No. 4/5, Babu Nagar, Old Mustafabad, Main Brijpuri Road, Delhi-110094</p>
+                </div>
+                <div class="invoice_part">
+                  <div class="lft">
+                    <span><label>Invoice Serial No: </label> <%= invoice.invoice_no %></span>
+                    <span><label>Invoice Date: </label> <%= invoice.created_at.strftime("%d-%m-%Y at %I:%M %p") %></span>
+                  </div>
+                  <div class="rig">
+                    <span><label>Transportation Mode: </label> <%= invoice.transportation_mode %></span>
+                    <span><label>Veh No: </label> <%= invoice.vehicle_no %></span>
+                    <span><label>Date & Time of Supply: </label> <%= invoice.supply_date_time.strftime("%d-%m-%Y at %I:%M %p") %></span>
+                    <span><label>Place of Supply: </label> <%= invoice.supply_place %></span>
+                  </div>
+                </div>
+                  <div class="details">
+                    <div class="d-head">
+                      <p>Details of Receiver (Billed to)</p>
+                    </div>
+                    <div class="fill">
+                      <div class="fill_inner">
+                        <span>Name :  </span> <label><%= invoice.buyer_name %></label>
+                      </div>
+                      <div class="fill_inner">
+                        <span>Address : </span> <label><%= invoice.buyer_address %></label>
+                      </div>
+                      <div class="fill_inner">
+                        <span>State : </span> <label><%= invoice.state %></label>
+                      </div>
+                      <div class="fill_inner">
+                        <span>GSTIN : </span> <label><%= invoice.buyer_gstin_no %></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tbl">
+                    <table>
+                      <thead>
+                        <tr>
+                          <td>S. No.</td>
+                          <td>Description of Goods </td>
+                          <td class="custom_td">HSN/ACS <br> Code</td>
+                          <td style="width: 60px;">Qty</td>
+                          <td style="width: 70px;">Rate</td>
+                          <td>Taxable Value</td>
+                        </tr>
+                      </thead>
+                      <tbody class="border-thick">
+                        <% invoice.goods_details.each.with_index(1) do |good, index| %>
+                          <tr>
+                            <td><%= index %></td>
+                            <td><%= good.goods_desc %></td>
+                            <td><%= good.hsn_acs_code %></td>
+                            <td><%= '%.2f' % good.quantity %></td>
+                            <td><%= '%.2f' % good.rate %></td>
+                            <td><%= '%.2f' % good.taxable_value %></td>
+                          </tr>
+                        <% end %>
+                        <tr style="border-top:2px solid;border-bottom: 2px solid; text-align: right;">
+                          <td colspan="2"></td>
+                          <td colspan="3"><b> Total </b> </td>
+                          <td><%= '%.2f' % invoice.total_taxable_value %></td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid;">
+                          <td colspan="2"></td>
+                          <td colspan="3">
+                            <table>
+                              <tr style="border-bottom: 2px solid;">
+                                <td><b>CGST (in %): </b><%= invoice.cgst %></td>
+                              </tr>
+                              <tr>
+                                <td><b>SGST (in %): </b><%= invoice.sgst %></td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td>
+                            <table>
+                              <tr style="border-bottom: 2px solid;">
+                                <td><%= '%.2f' % invoice.tot_cgst %></td>
+                              </tr>
+                              <tr>
+                                <td><%= '%.2f' % invoice.tot_sgst %></td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                        <tr style="">
+                          <td colspan="2" style="border-top: 2px solid;font-weight: 700;">Amount of Tax Subject Reverse Charge</td>
+                          <td colspan="3">
+                            <table>
+                              <tr>
+                                <td><b>IGST (in%): </b><%= invoice.igst %>&nbsp;</td>
+                              </tr>
+                              <tr style="border-top: 2px solid; font-weight: 700;">
+                                <td><b>Cartage </b></td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td>
+                            <table>
+                              <tr>
+                                <td><%= '%.2f' % invoice.tot_igst %> &nbsp;</td>
+                              </tr>
+                              <tr style="border-top: 2px solid;">
+                                <td><%= invoice.cartage %>&nbsp;</td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                        <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+                          <td colspan="2"> <b>if the particulars given above are true and correct</b></td>
+                          <td colspan="3"><b>Invoice Total</b></td>
+                          <td><%= '%.2f' % invoice.invoice_total %></td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="footer">
+                    <h1>For M/S. AVON PAPER</h1>
+                    <div class="footer_text">
+                      <p><b>Terms & conditions of sale </b></p>
+                      <p>Goods Once Sold Will Not Be Taken Back</p>
+                      <p>Taxes Will Be Charged As Applicable</p>
+                      <p>Subject To Delhi Jurisdiction Only</p>
+                    </div>
+                     <p class="sig">Auth. Sign</p>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

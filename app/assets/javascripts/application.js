@@ -16,4 +16,5 @@
 //= require cocoon
 //= require rails-ujs
 //= require turbolinks
+//= require select_all.js
 //= require_tree .

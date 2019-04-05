@@ -146,7 +146,8 @@
         </div>
     </div>
     <div class="custom_butns">
-      <a href="javascript:void(0);" onclick="print_pdf()" target="_blank">Print</a>
+      <a href= "<%=invoice_path(@invoice, format: :pdf)%>" target='_blank'>Print</a>
+
       <a href="<%=edit_invoice_path(@invoice)%>">Edit</a>
     </div>
   </div>

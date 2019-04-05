@@ -17,12 +17,14 @@ gem 'jquery-rails'
 gem 'cocoon'
 gem 'simple_form'
 gem 'pry-rails'
-gem 'wkhtmltopdf-binary', '~> 0.12.4'
 gem 'fiscali'
 gem 'bootstrap-datepicker-rails'
-gem 'city-state'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
-#gem 'mysql2', '~> 0.5.2'
+gem 'mysql2', '~> 0.5.2'
+gem 'select_all-rails'
+gem "letter_opener", :group => :development
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Use mysql as the database for Active Record
 #gem 'mysql2', '~> 0.5.2'

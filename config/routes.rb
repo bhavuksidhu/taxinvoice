@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root :to => 'invoices#new'
   resources :invoices
   get '/pdf' => "invoices#pdf"
+  post '/send_invoice' => "invoices#send_invoice"
 end
