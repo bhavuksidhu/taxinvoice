@@ -264,8 +264,8 @@
       }
       .links{
             padding: 18px 0;
-            /* margin-top: -75px; */
-            padding-top: 0px;
+            margin-top: -75px;
+            padding-top: 18px;
         .add_fields{
           padding: 6px 15px;
           background: #ff8484;
@@ -277,7 +277,8 @@
       .custom_remove{
         text-align: right;
         padding-bottom: 32px;
-        margin-bottom: -54px;
+        margin-bottom: -50px;
+        padding-top: 18px;
         a.remove_fields.dynamic{
           padding: 6px 15px;
           background: #ff8484;
