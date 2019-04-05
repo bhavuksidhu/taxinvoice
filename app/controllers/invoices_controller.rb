@@ -32,7 +32,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        @pdf = render_to_string(pdf: invoice_name, template: "invoices/pdf.html.erb", :locals => {invoice: @invoice})
+        @pdf = render_to_string(pdf: invoice_name, default_header: false, template: "invoices/pdf.html.erb", :locals => {invoice: @invoice})
         send_data(@pdf, :filename => invoice_name, :type=>"application/pdf", disposition: "inline")
       end
     end
@@ -47,7 +47,7 @@ class InvoicesController < ApplicationController
     else
       render :edit
     end
-  end
+  end 
 
   private
     def invoice_params

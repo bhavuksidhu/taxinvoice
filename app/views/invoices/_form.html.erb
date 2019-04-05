@@ -28,8 +28,13 @@
           <label for="">Vehicle No :</label> <%= f.text_field :vehicle_no, required: true %>
         </div>
         <div class="col-sm-6">
-          <label for="">Supply Date & Time :</label> <%= f.datetime_field :supply_date_time, min: Date.today, required: true %>
+          <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, required: true, :autocomplete => 'off', id: "datetimepicker" %>
         </div>
+        <script type="text/javascript">
+            $('#datetimepicker').datepicker({
+               format: 'dd/mm/yyyy', "autoclose": true,
+            });
+        </script>
         <div class="col-sm-6">
           <label for="">Place of Supply :</label> <%= f.text_field :supply_place, required: true %>
         </div>
@@ -85,6 +90,7 @@
   </div>
 </div>
 <script type="text/javascript">
+    $('#invoice_goods_details_attributes_0__destroy').parent('.custom_remove').find('.remove_fields').hide();
   $('.cgst,.sgst,.igst,.cartage,.quantity,.rate').keyup(function(){
     var sum = 0;
     var rate = $(".rate", this.parentNode).val() || 0
@@ -136,5 +142,14 @@
       invoice_total = intTotal_tx + totalCgst + totalIgst + totalSgst + cartridgeValue
       $('.invoice_total').val(parseFloat(invoice_total).toFixed(2));
     });
-  });  
+    $(document).on('click', '.remove_fields', function(){
+      $(this).parent().parent().find('.field_block').remove()
+      $('.quantity').trigger('keyup')
+    });
+  }); 
+
+  $('.remove_fields').click(function(){
+    $(this).parent().parent().find('.field_block').remove()
+   $('.quantity').trigger('keyup')
+  });
 </script>
