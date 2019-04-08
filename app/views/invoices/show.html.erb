@@ -40,7 +40,7 @@
         <div class="rig">
           <span><label>Transportation Mode: </label> <%= @invoice.transportation_mode %></span>
           <span><label>Veh No: </label> <%= @invoice.vehicle_no %></span>
-          <span><label>Date of Supply: </label> <%= @invoice.supply_date_time.strftime("%d-%m-%Y") %></span>
+          <span><label>Date of Supply: </label> <%= @invoice.supply_date_time.strftime("%d-%m-%Y") rescue: nil%></span>
           <span><label>Place of Supply: </label> <%= @invoice.supply_place %></span>
         </div>
       </div>
