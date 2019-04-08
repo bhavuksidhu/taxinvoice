@@ -22,13 +22,13 @@
       <span>Transportation Details</span>
       <div class="row">    
         <div class="col-sm-6">
-          <label for="">Transportation Mode :</label> <%= f.text_field :transportation_mode, required: true %>
+          <label for="">Transportation Mode :</label> <%= f.text_field :transportation_mode%>
         </div>
         <div class="col-sm-6">
-          <label for="">Vehicle No :</label> <%= f.text_field :vehicle_no, required: true %>
+          <label for="">Vehicle No :</label> <%= f.text_field :vehicle_no %>
         </div>
         <div class="col-sm-6">
-          <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, required: true, :autocomplete => 'off', id: "datetimepicker" %>
+          <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, :autocomplete => 'off', id: "datetimepicker" %>
         </div>
         <script type="text/javascript">
             $('#datetimepicker').datepicker({
@@ -36,7 +36,7 @@
             });
         </script>
         <div class="col-sm-6">
-          <label for="">Place of Supply :</label> <%= f.text_field :supply_place, required: true %>
+          <label for="">Place of Supply :</label> <%= f.text_field :supply_place %>
         </div>
       </div>
     </div>
