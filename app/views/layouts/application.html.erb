@@ -31,23 +31,12 @@
           </div>
         </div>  
       </nav>
-      <!-- <header>
-        <div class="header_inner">
-          <div class="brand">
-            <a href="<%=root_path%>">AVON PAPER</a>
+      <div class=" pd_0">
+        <% flash.each do |name, msg| %>
+          <div class='alert alert-<%= name %>'>
+            <%= msg %>
           </div>
-          <ul>
-            <% if user_signed_in? %>
-              <li><%=link_to 'Generate Invoice', root_path%></li>
-              <li><%=link_to 'All Invoices', invoices_path%></li>
-              <li>
-                <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </header>
- -->      <div class=" pd_0">
+        <% end %>
         <div class="pd_top" style="padding-top: 48px;">
           <%= yield %>
         </div>
