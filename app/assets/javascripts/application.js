@@ -17,5 +17,6 @@
 //= require cocoon
 //= require rails-ujs
 //= require turbolinks
+//= require datatables
 //= require select_all.js
 //= require_tree .

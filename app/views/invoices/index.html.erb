@@ -4,26 +4,70 @@
     <div class="table-responsive-sm customize_table table-bordered">
       <table id="dtBasicExample" class="table " cellspacing="0" width="100%">
         <thead>
-          <tr>
-            <th class="th-sm">Buyer Name</th>
-            <th class="th-sm">Invoice Number</th>
-            <th class="th-sm">Created at</th>
-            <th class="th-sm">Action</th>
-            <th class="th-sm">Send Mail</th>
-          </tr>
+          <tbody>
+            <td>Minimum Date:</td>
+            <td><input name="min" id="min" type="text"></td>
+            <td>Maximum Date:</td>
+            <td><input name="max" id="max" type="text"></td>
+            <table width="100%" class="display" id="example" cellspacing="0">
+             <thead>
+                <tr>
+                  <th class="th-sm">Buyer Name</th>
+                  <th class="th-sm">Invoice Number</th>
+                  <th class="th-sm">Created at</th>
+                  <th class="th-sm">Action</th>
+                  <th class="th-sm">Send Mail</th>
+                </tr>            
+             </thead>
+             <tbody>
+                <% @invoices.each do |invoice|%>
+               <tr start_date = "<%= invoice.created_at.strftime("%m/%d/%Y")%>" >
+                 <td><%=invoice.buyer_name%></td>
+                 <td><%=invoice.invoice_no%></td>
+                 <td><%=invoice.created_at.strftime("%m/%d/%Y")%></td>
+                 <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
+                 <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %></td>
+                 <td><button type="button" class="btn btn-primary send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
+                </tr>
+                <%end%>
+              </tbody>
+            </table>
+            <script type="text/javascript">
+              $("#min").datepicker({"autoclose": true});
+              $("#max").datepicker({"autoclose": true});
+              $(document).ready(function(){
+                $("#example").dataTable();
+                $('#min').change(function(){
+                  min_date = $(this).val();
+                  max_date = $(this).val();
+                  $("tr[start_date]").each(function() {
+                   var date = $(this).attr('start_date')
+                    if (min_date <= date && max_date !="") {
+                      $(this).show();
+                    }  
+                    else
+                    {
+                      $(this).hide();
+                    }
+                  });
+                });
+                $('#max').change(function(){
+                  max_date = $(this).val();
+                  $("tr[start_date]").each(function() { 
+                    var date = $(this).attr('start_date')
+                    if (max_date >= date) {
+                      $(this).show();
+                    }
+                    else
+                    {
+                      $(this).hide();
+                    }
+                  });
+                });
+              }); 
+            </script>
+          </tbody>
         </thead>
-        <tbody>
-          <% @invoices.each do |invoice|%>
-            <tr>
-              <td><%=invoice.buyer_name%></td>
-              <td><%=invoice.invoice_no%></td>
-              <td><%=invoice.created_at.strftime("%d/%m/%Y")%></td>
-              <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
-                <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %></td>
-              <td><button type="button" class="btn btn-primary send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
-            </tr>
-          <%end%>
-        </tbody>
       </table>
     </div>   
     <%= will_paginate @invoices %>

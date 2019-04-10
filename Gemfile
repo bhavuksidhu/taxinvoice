@@ -25,7 +25,7 @@ gem 'select_all-rails'
 gem "letter_opener", :group => :development
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
-
+#gem 'jquery-datatables'
 # Use mysql as the database for Active Record
 #gem 'mysql2', '~> 0.5.2'
 # Use Puma as the app server
