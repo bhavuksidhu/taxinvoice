@@ -308,7 +308,18 @@
     }
   }
 }
-
+.alert-success{
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.alert{
+  position: relative;
+  padding: 0.75rem 32.25rem;
+  margin-bottom: -3.5rem;
+  margin-top: 3.6rem;
+  border-radius: 0.25rem;
+}
 
 .custom_main{
     width: 100%;

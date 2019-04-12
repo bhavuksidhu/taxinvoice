@@ -14,9 +14,9 @@ class InvoicesController < ApplicationController
 	def create
 		@invoice = Invoice.new(invoice_params)
 		if @invoice.save
-		  redirect_to invoice_path(@invoice.id)
+		  redirect_to invoice_path(@invoice.id), success: "Invoice created successfully"
 		else
-		  render :new
+		  render :new, danger: "Invoice not created!"
 		end
 	end
 
@@ -24,6 +24,7 @@ class InvoicesController < ApplicationController
     email = params[:email]
     invoice = Invoice.find(params[:invoice_id])
     InvoiceMailer.welcome(email, invoice).deliver
+    redirect_to invoices_path, success: "Invoice sent successfully"
     
   end
 
@@ -43,9 +44,9 @@ class InvoicesController < ApplicationController
 
   def update
     if @invoice.update(invoice_params)
-      redirect_to invoice_path(@invoice)
+      redirect_to invoice_path(@invoice), success: "Invoice updated successfully"
     else
-      render :edit
+      render :edit, danger: "invoice not updated!"
     end
   end 
 
