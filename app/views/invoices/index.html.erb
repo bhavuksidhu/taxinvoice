@@ -33,34 +33,75 @@
               </tbody>
             </table>
             <script type="text/javascript">
-              $("#min").datepicker({"autoclose": true, "autocomplete": false});
-              $("#max").datepicker({"autoclose": true});
+            $("#min").datepicker({
+                autoclose: true,
+              }).on('changeDate', function (selected) {
+                var startDate = new Date(selected.date.valueOf());
+                $('#max').datepicker('setStartDate', startDate);
+              }).on('clearDate', function (selected) {
+                $('#max').datepicker('setStartDate', null);
+              });
+              $("#max").datepicker({
+                autoclose: true,
+              }).on('changeDate', function (selected) {
+                var endDate = new Date(selected.date.valueOf());
+                $('#min').datepicker('setEndDate', endDate);
+              }).on('clearDate', function (selected) {
+                $('#min').datepicker('setEndDate', null);
+              });
               $(document).ready(function(){
                 $("#example").dataTable();
                 $('#min').change(function(){
                   min_date = $(this).val();
-                  max_date = $(this).val();
+                  max_date = $("#max").val();
                   $("tr[start_date]").each(function() {
-                   var date = $(this).attr('start_date')
-                    if (min_date <= date && max_date !="") {
-                      $(this).show();
-                    }  
+                    var tr_min_date = $(this).attr('start_date')
+                    var tr_max_date = $(this).attr('start_date')
+                    if (max_date == "") {
+                      if ((min_date <= tr_min_date)) {
+                        $(this).show();
+                      }  
+                      else
+                      {
+                        $(this).hide();
+                      }
+                    }
                     else
                     {
-                      $(this).hide();
+                      if ((min_date <= tr_min_date) && max_date >= tr_max_date ) {
+                        $(this).show();
+                      }  
+                      else
+                      {
+                        $(this).hide();
+                      }
                     }
                   });
                 });
                 $('#max').change(function(){
                   max_date = $(this).val();
-                  $("tr[start_date]").each(function() { 
-                    var date = $(this).attr('start_date')
-                    if (max_date >= date) {
-                      $(this).show();
+                  min_date = $("#min").val();
+                  $("tr[start_date]").each(function() {
+                    var tr_min_date = $(this).attr('start_date')
+                    var tr_max_date = $(this).attr('start_date')
+                    if (min_date == "") {
+                      if ((max_date >= tr_max_date)) {
+                        $(this).show();
+                      }  
+                      else
+                      {
+                        $(this).hide();
+                      }
                     }
                     else
                     {
-                      $(this).hide();
+                      if ((min_date <= tr_min_date) && max_date >= tr_max_date ) {
+                        $(this).show();
+                      }  
+                      else
+                      {
+                        $(this).hide();
+                      }
                     }
                   });
                 });
