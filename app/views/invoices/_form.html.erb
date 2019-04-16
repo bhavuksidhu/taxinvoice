@@ -16,6 +16,9 @@
         <div class="col-sm-6">
           <label for="">GSTIN No :</label> <%= f.text_field :buyer_gstin_no, required: true %>
         </div>
+        <div class="col-sm-6">
+          <label for="">Invoice Date :</label> <%= f.text_field :invoice_date, id: "datepicker"%>
+        </div>
       </div>
     </div>
     <div class="custom_border">
@@ -31,9 +34,16 @@
           <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, :autocomplete => 'off', id: "datetimepicker" %>
         </div>
         <script type="text/javascript">
+          <%Date.fy_start_month = 4%>
+          $(document).ready(function(){
+            startDate = "<%=Date.today.beginning_of_financial_year.strftime('%d/%m/%Y')%>"
+            endDate = "<%=Date.today.end_of_financial_year.strftime('%d/%m/%Y')%>"
+            $('#datepicker').datepicker({
+             format: 'dd/mm/yyyy', startDate: startDate, endDate: endDate}).datepicker("setDate",'now');
             $('#datetimepicker').datepicker({
-               format: 'dd/mm/yyyy', "autoclose": true,
+              format: 'dd/mm/yyyy', "autoclose": true,
             });
+          });
         </script>
         <div class="col-sm-6">
           <label for="">Place of Supply :</label> <%= f.text_field :supply_place %>
