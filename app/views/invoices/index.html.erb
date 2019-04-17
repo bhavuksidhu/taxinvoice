@@ -2,21 +2,21 @@
   <div class="inner_page">
     <h3>All invoices</h3>
     <div class="table-responsive-sm customize_table table-bordered">
-      <table id="dtBasicExample" class="table " cellspacing="0" width="100%">
+      <table id="dtBasicExample" class="table cutom_fixing" cellspacing="0" width="100%">
         <thead>
           <tbody>
             <td>Minimum Date:</td>
             <td><input name="min" id="min" type="text" autocomplete="off"></td>
             <td>Maximum Date:</td>
             <td><input name="max" id="max" type="text" autocomplete="off"></td>
-            <table width="100%" class="display" id="example" cellspacing="0">
+            <table width="100%" class="display cutom_fixing" id="example" cellspacing="0">
              <thead>
                 <tr>
-                  <th class="th-sm">Buyer Name</th>
-                  <th class="th-sm">Invoice Number</th>
-                  <th class="th-sm">Created at</th>
-                  <th class="th-sm">Action</th>
-                  <th class="th-sm">Send Mail</th>
+                  <th class="th-sm before">Buyer Name</th>
+                  <th class="th-sm before">Invoice Number</th>
+                  <th class="th-sm before">Invoice Date</th>
+                  <th class="th-sm before">Action</th>
+                  <th class="th-sm before">Send Mail</th>
                 </tr>            
              </thead>
              <tbody>
@@ -27,7 +27,7 @@
                  <td><%=invoice.created_at.strftime("%m/%d/%Y")%></td>
                  <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
                  <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %></td>
-                 <td><button type="button" class="btn btn-primary send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
+                 <td><button href="#" class=" send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
                 </tr>
                 <%end%>
               </tbody>
