@@ -15,41 +15,45 @@
                   <th class="th-sm before">Buyer Name</th>
                   <th class="th-sm before">Invoice Number</th>
                   <th class="th-sm before">Invoice Date</th>
-                  <th class="th-sm before">Action</th>
-                  <th class="th-sm before">Send Mail</th>
+                  <th class="th-sm before">Actions</th>
+                  <!-- <th class="th-sm before">Send Mail</th> -->
                 </tr>            
              </thead>
              <tbody>
                 <% @invoices.each do |invoice|%>
-               <tr start_date = "<%= invoice.created_at.strftime("%m/%d/%Y")%>" >
-                 <td><%=invoice.buyer_name%></td>
-                 <td><%=invoice.invoice_no%></td>
-                 <td><%=invoice.created_at.strftime("%m/%d/%Y")%></td>
-                 <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
-                 <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %></td>
-                 <td><button href="#" class=" send_invoice_btn" data-id="<%=invoice.id%>">Send Invoice</button></td>
-                </tr>
+                 <tr start_date = "<%= invoice.created_at.strftime("%m/%d/%Y")%>" >
+                   <td><%=invoice.buyer_name%></td>
+                   <td><%=invoice.invoice_no%></td>
+                   <td><%=invoice.created_at.strftime("%m/%d/%Y")%></td>
+                   <td><%=link_to 'View', invoice_path(invoice) , class: 'view' %>
+                   <%=link_to 'Edit', edit_invoice_path(invoice) , class: 'edit' %>
+                   <%=link_to 'Send Invoice',"javascript:void(0)", id: invoice.id, class: 'send_invoice_btn' %></td>
+                    <!-- <button href="#" class=" send_invoice_btn" id="<%=invoice.id%>">Send Invoice</button></td> -->
+                  </tr>
                 <%end%>
               </tbody>
             </table>
             <script type="text/javascript">
-            $("#min").datepicker({
-                autoclose: true,
-              }).on('changeDate', function (selected) {
-                var startDate = new Date(selected.date.valueOf());
-                $('#max').datepicker('setStartDate', startDate);
-              }).on('clearDate', function (selected) {
-                $('#max').datepicker('setStartDate', null);
-              });
-              $("#max").datepicker({
-                autoclose: true,
-              }).on('changeDate', function (selected) {
-                var endDate = new Date(selected.date.valueOf());
-                $('#min').datepicker('setEndDate', endDate);
-              }).on('clearDate', function (selected) {
-                $('#min').datepicker('setEndDate', null);
-              });
               $(document).ready(function(){
+                $(window).on('popstate', function() {
+                 location.reload(true);
+                });
+                $("#min").datepicker({
+                    autoclose: true,
+                  }).on('changeDate', function (selected) {
+                    var startDate = new Date(selected.date.valueOf());
+                    $('#max').datepicker('setStartDate', startDate);
+                  }).on('clearDate', function (selected) {
+                    $('#max').datepicker('setStartDate', null);
+                });
+                $("#max").datepicker({
+                    autoclose: true,
+                  }).on('changeDate', function (selected) {
+                    var endDate = new Date(selected.date.valueOf());
+                    $('#min').datepicker('setEndDate', endDate);
+                  }).on('clearDate', function (selected) {
+                    $('#min').datepicker('setEndDate', null);
+                });
                 $("#example").dataTable();
                 $('#min').change(function(){
                   min_date = $(this).val();
@@ -105,7 +109,7 @@
                     }
                   });
                 });
-              }); 
+              });
             </script>
           </tbody>
         </thead>
@@ -137,7 +141,7 @@
 
 <script>
   $('.send_invoice_btn').click(function(){
-    $("#invoice_id").val($(this).data('id'))
+    $("#invoice_id").val($(this).attr('id'))
     $('#Mymodal').modal('show')
   });
 </script>
