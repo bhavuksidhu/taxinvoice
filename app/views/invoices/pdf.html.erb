@@ -36,7 +36,7 @@
           <div class="invoice_part">
             <div class="lft">
               <span><label>Invoice Serial No: </label> <%= invoice.invoice_no %></span>
-              <span><label>Invoice Date: </label> <%= invoice.created_at.strftime("%d-%m-%Y") %></span>
+              <span><label>Invoice Date: </label> <%= invoice.invoice_date.strftime("%d-%m-%Y") %></span>
             </div>
             <div class="rig">
               <span><label>Transportation Mode: </label> <%= invoice.transportation_mode %></span>
