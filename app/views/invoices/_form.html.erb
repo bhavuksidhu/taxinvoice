@@ -31,7 +31,7 @@
           <label for="">Vehicle No :</label> <%= f.text_field :vehicle_no %>
         </div>
         <div class="col-sm-6">
-          <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, :autocomplete => 'off', id: "datetimepicker" %>
+          <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, required: true, :autocomplete => 'off', id: "datetimepicker" %>
         </div>
         <script type="text/javascript">
           <%Date.fy_start_month = 4%>
