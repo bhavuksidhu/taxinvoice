@@ -3,25 +3,34 @@
     <h1 class="heding_1"><%=@invoice.new_record? ? 'New Invoice' : 'Edit Invoice'%></h1>
     <%= form_for @invoice do |f| %>
     <div class="custom_border">
-      <span>Buyer Details</span>
-    <label for="">Name of Buyer :</label> <%= f.text_field :buyer_name, required: true %>
-    <label for="">Address of Buyer :
+      <span>Customer Details</span>
+    <label for="">Name of Customer :</label> <%= f.text_field :buyer_name, required: true %>
+    <label for="">Address of Customer :
     <label for="">
       <%= f.text_area :buyer_address, required: true , class: 'textarea' %>
       <div class="row">
         <div class="col-sm-6">
-          <label for="">State :<label for="">
+          <label for="">Organization :<label for="">
           <%= f.select :state, options_for_select(states) %>
         </div>
         <div class="col-sm-6">
-          <label for="">GSTIN No :</label> <%= f.text_field :buyer_gstin_no, required: true %>
+          <label for="">GSTIN No :</label> <%= f.text_field :buyer_gstin_no %>
         </div>
         <div class="col-sm-6">
-          <label for="">Invoice Date :</label> <%= f.text_field :invoice_date, id: "datepicker"%>
+          <label for="">Subscription Period :</label> <%= f.text_field :supply_place%>
+        </div>
+        <div class="col-sm-6">
+          <label for="">Invoice Date:</label> <%= f.text_field :invoice_date, id: "datetimepicker"%>
+        </div>
+        <div class="col-sm-6">
+          <label for="">E-mail:</label> <%= f.text_field :email%>
+        </div>
+        <div class="col-sm-6">
+          <label for="">Phone No:</label> <%= f.text_field :mobile_no%>
         </div>
       </div>
     </div>
-    <div class="custom_border">
+    <!-- <div class="custom_border">
       <span>Transportation Details</span>
       <div class="row">    
         <div class="col-sm-6">
@@ -32,7 +41,7 @@
         </div>
         <div class="col-sm-6">
           <label for="">Supply Date :</label> <%= f.text_field :supply_date_time, required: true, :autocomplete => 'off', id: "datetimepicker" %>
-        </div>
+        </div> -->
         <script type="text/javascript">
           <%Date.fy_start_month = 4%>
           $(document).ready(function(){
@@ -45,14 +54,14 @@
             });
           });
         </script>
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
           <label for="">Place of Supply :</label> <%= f.text_field :supply_place %>
         </div>
       </div>
     </div>
-    
+     -->
     <div class="custom_border">
-      <span>Goods Details</span>
+      <span>Personal Details</span>
       <div class="position">
         <%= f.fields_for :goods_details do |builder| %>
         <%= render 'goods_detail_fields', f: builder %>
@@ -86,7 +95,7 @@
           <label for="">Total IGST :</label> <%= f.text_field :tot_igst, :readonly => true, class: "tot_igst" %>
         </div>
         <div class="col-sm-6">
-          <label for="">Cartage :</label> <%= f.number_field :cartage, step: :any, class: "cartage" %>
+          <label for="">Discount (in %) :</label> <%= f.number_field :cartage, step: :any, class: "cartage" %>
         </div>
         <div class="col-sm-6">
           <label for="">Invoice Total :</label> <%= f.text_field :invoice_total, :readonly => true, class: "invoice_total" %>
@@ -101,12 +110,12 @@
 </div>
 <script type="text/javascript">
     $('#invoice_goods_details_attributes_0__destroy').parent('.custom_remove').find('.remove_fields').hide();
-  $('.cgst,.sgst,.igst,.cartage,.quantity,.rate').keyup(function(){
+  $('.cgst,.sgst,.igst,.cartage,.rate').keyup(function(){
     var sum = 0;
-    var rate = $(".rate", this.parentNode).val() || 0
-    var quantity = $(".quantity", this.parentNode).val() || 0;
-    var total = rate * quantity;
-    $(".taxable_value", this.parentNode).val(parseFloat(total).toFixed(2));
+    var rate = $(".rate", this.parentNode).val() || 0;
+    // var quantity = $(".quantity", this.parentNode).val() || 0;
+    var total = rate;
+    $(".taxable_value", this.parentNode).val(parseFloat(total).toFixed());
     $(".taxable_value").each(function(){
       sum = sum + parseFloat($(this).val());
       $('.total_taxable_value').val(parseFloat(sum).toFixed(2));
@@ -123,15 +132,17 @@
     $('.tot_sgst').val(parseFloat(totalSgst).toFixed(2));
     $('.tot_igst').val(parseFloat(totalIgst).toFixed(2));
     cartridgeValue = parseFloat($('.cartage').val() || 0)
-    invoice_total = intTotal_tx + totalCgst + totalIgst + totalSgst + cartridgeValue
+    totalcartridgeValue = intTotal_tx * cartridgeValue/100
+    invoice_total = intTotal_tx + totalCgst + totalIgst + totalSgst - totalcartridgeValue
+   
     $('.invoice_total').val(parseFloat(invoice_total).toFixed(2));
   });
   $('.add_fields',).click(function(){
-    $(document).on("keyup", ".cgst,.sgst,.igst,.cartage,.quantity,.rate", function() {
+    $(document).on("keyup", ".cgst,.sgst,.igst,.cartage,.rate", function() {
       var sum = 0;
       var rate = $(".rate", this.parentNode).val() || 0
       var quantity = $(".quantity", this.parentNode).val() || 0;
-      var total = rate * quantity;
+      var total = rate;
       $(".taxable_value", this.parentNode).val(parseFloat(total).toFixed(2));
       $(".taxable_value").each(function(){
         sum = sum + parseFloat($(this).val());
@@ -149,17 +160,18 @@
       $('.tot_sgst').val(parseFloat(totalSgst).toFixed(2));
       $('.tot_igst').val(parseFloat(totalIgst).toFixed(2));
       cartridgeValue = parseFloat($('.cartage').val() || 0)
-      invoice_total = intTotal_tx + totalCgst + totalIgst + totalSgst + cartridgeValue
+      totalcartridgeValue = intTotal_tx * cartridgeValue/100
+      invoice_total = intTotal_tx + totalCgst + totalIgst + totalSgst - totalcartridgeValue
       $('.invoice_total').val(parseFloat(invoice_total).toFixed(2));
     });
     $(document).on('click', '.remove_fields', function(){
       $(this).parent().parent().find('.field_block').remove()
-      $('.quantity').trigger('keyup')
+      $('.rate').trigger('keyup')
     });
   }); 
 
   $('.remove_fields').click(function(){
     $(this).parent().parent().find('.field_block').remove()
-   $('.quantity').trigger('keyup')
+   $('.rate').trigger('keyup')
   });
 </script>

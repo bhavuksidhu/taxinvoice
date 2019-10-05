@@ -1,10 +1,45 @@
 <div class="pdf">
+  <div class="pdf_header">
+        <%=image_tag 'logo.png'%>
+      </div>
   <div class="pdf_inner">
     <div class="content_pdf">
-      <span class="top_name"><u>TAX INVOICE</u></span>
+      <span class="top_name"><u> INVOICE</u></span>
     </div>
     <div class="content_part">
-      <div class="brand_name">
+      <div class="details">
+          <div class="fill">
+            <div class="fill_inner">
+              <span>Invoice No : CR/SUBS/</span><label><%= @invoice.invoice_no %></label>
+              <div class="fill_inner_left">
+              <span>Date : </span> <label><%= @invoice.invoice_date.strftime("%d-%m-%Y") rescue nil %></label>
+            </div>
+            </div>
+            <div class="fill_inner">
+              <span>Customer Name :  </span><label><%= @invoice.buyer_name %></label>
+            </div>
+            <div class="fill_inner">
+              <span>Organization: </span> <label><%= @invoice.state %></label>
+            </div>
+            <div class="fill_inner">
+              <span>Mobile: </span> <label><%= @invoice.mobile_no %></label>
+            </div>
+            <div class="fill_inner">
+              <span>Email Id: </span> <label><%= @invoice.email %></label>
+            </div>
+            <div class="fill_inner">
+              <span>Address : </span> <label><%= @invoice.buyer_address %></label>
+            </div>
+            
+            <!-- <div class="fill_inner">
+              <span>GSTIN : </span> <label><%= @invoice.buyer_gstin_no %></label>
+            </div> -->
+          </div>
+        </div>
+        <div class="subscription">
+          <span>Subscription Period: </span> <label><%= @invoice.supply_place%></label>
+        </div>
+      <!-- <div class="brand_name">
           <div class="left-brand-box">
             <h1 class="big_text">M/S. AVON PAPER</h1>
             <P class="normal_text">A-2, Gali No. 4/5, Babu Nagar, Old Mustafabad, Main Brijpuri Road, Delhi-110094</P>
@@ -28,14 +63,14 @@
               </span>
             </span>
           </div>
-      </div>
+      </div> -->
       <div class="address">
         <!-- <p>Deals In : Polyster Metalize, H.M.L.D, B.O.P.P., Holographic Film</p> -->
       </div>
-      <div class="invoice_part">
+      <!-- <div class="invoice_part">
         <div class="lft">
           <span><label>Invoice Serial No: </label> <%= @invoice.invoice_no %></span>
-          <span><label>Invoice Date: </label> <%= @invoice.invoice_date.strftime("%d-%m-%Y") rescue nil %></span>
+          <span><label>Invoice Date: </label> </span>
         </div>
         <div class="rig">
           <span><label>Transportation Mode: </label> <%= @invoice.transportation_mode %></span>
@@ -43,35 +78,17 @@
           <span><label>Date of Supply: </label> <%= @invoice.supply_date_time.strftime("%d-%m-%Y") rescue nil%></span>
           <span><label>Place of Supply: </label> <%= @invoice.supply_place %></span>
         </div>
-      </div>
-        <div class="details">
-          <div class="d-head">
-            <p>Details of Receiver (Billed to)</p>
-          </div>
-          <div class="fill">
-            <div class="fill_inner">
-              <span>Name :  </span> <label><%= @invoice.buyer_name %></label>
-            </div>
-            <div class="fill_inner">
-              <span>Address : </span> <label><%= @invoice.buyer_address %></label>
-            </div>
-            <div class="fill_inner">
-              <span>State : </span> <label><%= @invoice.state %></label>
-            </div>
-            <div class="fill_inner">
-              <span>GSTIN : </span> <label><%= @invoice.buyer_gstin_no %></label>
-            </div>
-          </div>
-        </div>
+      </div> -->
+        
         <div class="tbl">
           <table>
             <thead>
               <tr>
-                <td>S. No.</td>
-                <td>Description of Goods </td>
-                <td class="custom_td">HSN/ACS <br> Code</td>
-                <td style="width: 60px;">Qty</td>
-                <td style="width: 70px;">Rate</td>
+                <td style="width: 60px;">S. No.</td>
+                <td style="width: 300px;">Journal Name</td>
+                <td class="custom_td" style="width: 200px;">Publication</td>
+                <td style="width: 60px;">Frequency</td>
+                <td style="width: 70px;">Price</td>
                 <td>Taxable Value</td>
               </tr>
             </thead>
@@ -125,7 +142,7 @@
                       <td><b>IGST (in%): </b><%= @invoice.igst %>&nbsp;</td>
                     </tr>
                     <tr style="border-top: 2px solid; font-weight: 700;">
-                      <td><b>Cartage </b></td>
+                      <td><b>Discount (in%): </b></td>
                     </tr>
                   </table>
                 </td>
@@ -141,7 +158,7 @@
                 </td>
               </tr>
 
-              <tr style="border-top: 2px solid; border-bottom: 2px solid;">
+              <tr style="border-top: 2px solid;">
                 <td colspan="2"> <b>if the particulars given above are true and correct</b></td>
                 <td colspan="3"><b>Invoice Total</b></td>
                 <td><%= '%.2f' % @invoice.invoice_total %></td>
@@ -151,14 +168,11 @@
           </table>
         </div>
         <div class="footer">
-          <h1>For M/S. AVON PAPER</h1>
           <div class="footer_text">
-            <p><b>Terms & conditions of sale </b></p>
-            <p>Goods Once Sold Will Not Be Taken Back</p>
-            <p>Taxes Will Be Charged As Applicable</p>
-            <p>Subject To Delhi Jurisdiction Only</p>
+            <p>Head Office : SE 569 Shastri Nagar || Ghaziabad - 201002 U.P.(India)</p>
+            <p>Phone : 9810611282, 8587872681 || E-mail: /<span>info@crsubscription.com</span>/<span>sales@crsubscription.com</span></p>
+            <p>www.crsubscription.com | GSTIN No. - 09AANFC5020F1ZN</p>
           </div>
-           <p class="sig">Auth. Sign</p>
         </div>
     </div>
     <div class="custom_butns">

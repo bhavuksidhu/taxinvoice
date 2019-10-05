@@ -6,12 +6,13 @@
     background: #fff;
     max-width: 950px;
     margin: 0 auto;
-    padding: 0px 0px;
+    padding: 40px;
   }
   .content_pdf{
     display: flex;
     .top_name{
-      display: block;
+      display: inline-block;
+      padding-top: 20px;
       width: 100%;
       font-size: 20px;
       font-weight: 600;
@@ -19,9 +20,15 @@
       margin-bottom: 20px;
     }
   }
+  .pdf_header{
+   float: right;
+   img{
+   width: 90%;
+  padding-top: 12px;
+  border-bottom: 2px solid gray;
+   }
+  }
   .content_part{
-    height: 1250px;
-    border: 2px solid #3e3e3e;
     .brand_name{
       height: 150px;
       padding: 8px 15px;
@@ -48,16 +55,20 @@
         font-size: 14px;
         float: left;
         width: 15%;
-        display: -webkit-box;
-        margin-top: 10px;
-        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+        .icon{
+          img{
+            height: 45px;
+          }     
+        }
         span{
           display: block;
-          display: -webkit-box;
           font-size: 13px;
         }
         .inline_content {
-          display: block;
+          display: flex;
+          justify-content: flex-end;
           span.fa.fa-phone {
             transform: rotate(90deg);
             margin-right: 5px;
@@ -77,8 +88,8 @@
       }
     }
     .address{
-      padding: 11px 0;
-      border-top:2px solid;
+      padding: 3px 0;
+      
       p{
         text-align: center;
         margin: 0;
@@ -87,8 +98,6 @@
     }
     .invoice_part{
       display: flex;
-      display: -webkit-box;
-      padding: 10px 10px;
       .lft{
         width: 50%;
         span{
@@ -104,7 +113,6 @@
       .rig{
         width: 50%;
         display: flex;
-        margin-top: 10px;
         flex-direction: column;
         justify-content: center;
         padding-left: 50px;
@@ -118,56 +126,52 @@
       }
     }
     .details{
-      .d-head{
-        text-align: center;
-        border-top:2px solid;
-        border-bottom:2px solid;
-        padding: 10px 0;
-        p{
-          margin: 0;
-          font-size: 16px;
-        }
-      }
       .fill{
-        border-bottom:2px solid;
         padding: 11px;
-        display: block;
-        width: 100%;
+        font-weight: 600;
+        font-size: 107%;
+        font-style: oblique;
         .fill_inner{
           display: flex;
-          display: -webkit-box;
-          margin-bottom: 10px;
           span{
-            display: block;
-            display: -webkit-box;
+            display: inline;
             line-height: 1.8;
           }
+          .fill_inner_left{
+          display: inline;
+          padding-right: 40px;
+          float: right;
+          }
           label{
+            margin: 0;
             flex-grow: 1;
             margin-left: 6px;
             margin-top: 3px;
-            display: block;
-            display: -webkit-box;
           }
         }
       }
     }
+    .subscription{
+     text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+    }
     .tbl{
+     border: 2px solid;
       table{
        width: 100%;
        thead{
         tr{
-          border-bottom: 2px solid #000;
+          border-bottom: 2px solid;
           text-align: center;
         }
         .custom_td{
           width: 126px;
         }
        }
-       td {
+       td{
           border-right: 2px solid;
           text-align: center;
-          padding: 13px 0px;
           &:last-child{
             border-right: none;
           }
@@ -175,7 +179,8 @@
       }
     }
     .footer{
-      padding: 0 10px;
+          padding-top: 36px;
+         text-align: center;
       margin-bottom: 5px;
       h1{
         font-size: 22px;
@@ -188,7 +193,10 @@
       .footer_text{
         p{
           margin: 0;
-          font-size: 14px;
+          font-size: 17px;
+        }
+        span{
+        color: #236cef !important;
         }
       }
       .sig{

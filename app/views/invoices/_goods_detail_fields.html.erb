@@ -1,9 +1,9 @@
 <div class="nested-fields">
 	<div class="field_block">
-	  <label for="" style="margin-top: 15px;">Goods Description</label><%= f.text_field :goods_desc, required: true, class: "goods_desc"%>
-	  <label for="">HSN/ACS Code</label><%= f.text_field :hsn_acs_code, required: true, class: "hsn_acs_code" %>
-	  <label for="">Quantity</label><%= f.number_field :quantity, step: :any, required: true, class: "quantity" %>
-	  <label for="">Rate</label><%= f.number_field :rate, step: :any, required: true, class: "rate" %>
+	  <label for="" style="margin-top: 15px;">Journal Name</label><%= f.text_field :goods_desc, required: true, class: "goods_desc"%>
+	  <label for="">Publication</label><%= f.text_field :hsn_acs_code, required: true, class: "hsn_acs_code" %>
+	  <label for="">Frequency</label><%= f.text_field :quantity, step: :any, required: true, class: "quantity" %>
+	  <label for="">Price</label><%= f.number_field :rate, step: :any, required: true, class: "rate" %>
 	  <label for="">Taxable Value</label> <%= f.text_field :taxable_value, :readonly => true, class: "taxable_value" %>
 	</div>
 	<div class="custom_remove">

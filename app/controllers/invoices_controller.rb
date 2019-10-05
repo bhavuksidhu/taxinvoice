@@ -24,8 +24,7 @@ class InvoicesController < ApplicationController
     email = params[:email]
     invoice = Invoice.find(params[:invoice_id])
     InvoiceMailer.welcome(email, invoice).deliver
-    redirect_to invoices_path, success: "Invoice sent successfully"
-    
+    redirect_to invoices_path, success: "Invoice sent successfully"  
   end
 
   def show
@@ -58,5 +57,4 @@ class InvoicesController < ApplicationController
     def find_invoice
       @invoice = Invoice.find(params[:id])
     end
-
 end
